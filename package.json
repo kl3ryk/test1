@@ -1,0 +1,40 @@
+{
+    "alias": {},
+    "dependencies": {
+        "baobab": "1.x",
+        "javascript-state-machine": "2.x",
+        "jquery": "2.x",
+        "lodash": "3.x",
+        "react": "0.x",
+        "classnames": "2.x"
+    },
+    "devDependencies": {
+        "bootstrap": "3.x",
+        "browser-sync": "2.x",
+        "gore-gulp": "0.x",
+        "gulp": "3.x",
+        "gulp-autoprefixer": "2.x",
+        "gulp-concat": "2.x",
+        "gulp-minify-css": "1.x",
+        "gulp-sass": "1.x",
+        "gulp-sourcemaps": "1.x",
+        "omniscient": "3.x"
+    },
+    "directories": {
+        "lib": "./web_modules",
+        "dist": "./web"
+    },
+    "engines": {
+        "node": ">=0.12"
+    },
+    "externals": {
+        "react": "React"
+    },
+    "provide": {
+    },
+    "name": "absolvent.pl",
+    "private": true,
+    "scripts": {
+        "test": "gulp test"
+    }
+}
