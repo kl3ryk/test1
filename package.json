@@ -28,7 +28,8 @@
         "node": ">=0.12"
     },
     "externals": {
-        "react": "React"
+        "react": "React",
+        "jquery": "$"
     },
     "provide": {
     },

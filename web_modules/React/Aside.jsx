@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import shouldUpdate from "omniscient/shouldupdate";
+// import shouldUpdate from "omniscient/shouldupdate";
 import classNames from "classnames";
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
@@ -22,12 +22,9 @@ export default React.createClass({
     },
     "getInitialState": function () {
         return {
-            "isVisible": this.props.isVisible,
+            "isVisible": true,
             "title": ""
         };
-    },
-    "propTypes": {
-        "isVisible": React.PropTypes.bool.isRequired
     },
     "render": function () {
         if (this.state.isVisible) {
@@ -44,6 +41,6 @@ export default React.createClass({
         }
 
         return null;
-    },
-    "shouldComponentUpdate": shouldUpdate
+    }
+    // "shouldComponentUpdate": shouldUpdate
 });
