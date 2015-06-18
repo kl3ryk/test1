@@ -6,10 +6,11 @@ import shouldUpdate from "omniscient/shouldupdate";
 
 export default React.createClass({
     "propTypes": {
-        "isVisible": React.PropTypes.bool.isRequired
+        "isVisible": React.PropTypes.bool.isRequired,
+        "onClose": React.PropTypes.func.isRequired
     },
     "render": function () {
-        return <Aside title="title 321 123 test" isVisible={this.props.isVisible}>
+        return <Aside isVisible={this.props.isVisible} onClose={this.props.onClose} title="title 321 123 test">
             <div>
                 test test test
                 <div>teest</div>
