@@ -22,19 +22,23 @@ export default React.createClass({
         "title": React.PropTypes.string.isRequired
     },
     "render": function () {
+        var content = "";
+        var overlay = "";
+
         if (this.props.isVisible) {
-            return <ReactCSSTransitionGroup className={this.getAsideClassNames()} component="div" transitionName="aside-content" transitionAppear={true}>
-                <div className="content" key="content">
+            content = <div className="content" key="content">
                     <h4>{this.props.title}</h4>
                     <a className="close" onClick={this.onCloseClick}>X</a>
                     <div>
                         {this.props.children}
                     </div>
-                </div>
-                <div className="overlay" key="overlay" onClick={this.onCloseClick}></div>
-            </ReactCSSTransitionGroup>;
+                </div>;
+            overlay = <div className="overlay" key="overlay" onClick={this.onCloseClick}></div>;
         }
 
-        return null;
+        return <ReactCSSTransitionGroup className={this.getAsideClassNames()} component="div" transitionName="aside-content" transitionAppear={true}>
+            {content}
+            {overlay}
+        </ReactCSSTransitionGroup>;
     }
 });

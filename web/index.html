@@ -14,44 +14,53 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.css">
         <style>
-            .aside-content-enter.content {
-                opacity: 0.01;
-                transition: opacity .5s ease-in;
+            body {
+                 overflow-x: hidden;
             }
 
-            .aside-content-enter.aside-content-enter-active.content {
-                opacity: 1;
+            .aside-content-enter.content, .aside-content-appear.content {
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+                transition: all .7s ease-in-out;
+            }
+
+            .aside-content-enter.aside-content-enter-active.content, .aside-content-appear.aside-content-appear-active.content {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
             }
 
             .aside-content-leave.content {
-                border: 2px solid green;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+                transition: all .7s ease-in-out;
             }
 
             .aside-content-leave.aside-content-leave-active.content {
-                border: 30px solid green;
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
             }
 
-            .aside-content-appear.overlay {
+
+
+            .aside-content-enter.overlay, .aside-content-appear.overlay {
+                opacity: 0;
+                transition: opacity .2s ease-in;
+            }
+
+            .aside-content-enter.aside-content-enter-active.overlay, .aside-content-appear.aside-content-appear-active.overlay  {
+                opacity: 0.7;
+            }
+
+            .aside-content-leave.overlay {
                 opacity: 0.7;
                 transition: opacity .2s ease-in;
             }
 
-            .aside-content-appear.aside-content-appear-active.overlay {
-                opacity: 0.7;
-            }
-
-            .aside .aside-content-appear.content {
-                -webkit-transform: translate3d(100%, 0, 0);
-                transform: translate3d(100%, 0, 0);
-                transition: all 0.3s ease-in-out;
-            }
-
-            .aside .aside-content-appear.aside-content-appear-active.content {
-                -webkit-transform: translate3d(0, 0, 0);
-                transform: translate3d(0, 0, 0);
+            .aside-content-leave.aside-content-leave-active.overlay {
+                opacity: 0;
             }
 
             .aside .overlay {
@@ -67,7 +76,6 @@
             }
 
             .aside .content {
-                transform: translateX(0);
                 background: white;
                 position: absolute;
                 right: 0;
@@ -140,7 +148,8 @@
             <!-- /.container-fluid -->
         </nav>
 
-        <a href="#" data-role="aside-open">Aside open</a>
+        <a href="#" data-role="aside-open-auth">Aside open auth</a>
+        <a href="#" data-role="aside-open-other">Aside open other</a>
         <a href="#" data-role="update-title" style="position: relative; z-index: 10000;">Update title</a>
 
         <div class="container">
@@ -151,7 +160,7 @@
             </div>
         </div>
 
-        <aside id="asideTest1"></aside>
+        <div id="asideTest1"></div>
 
         <script id="OfferSearchConfig" type="application/json">{
             "offers": [
@@ -208,6 +217,7 @@
 
         <script src="absolvent.pl.common.min.js"></script>
         <script src="absolvent.pl.aside.min.js"></script>
+        <script src="absolvent.pl.aside-2.min.js"></script>
 
         <script type="text/javascript">
             var _gaq = _gaq || [];

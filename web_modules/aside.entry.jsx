@@ -2,8 +2,6 @@
 
 import AuthorizationPane from "absolvent.pl/React/AuthorizationPane";
 import AsideState from "absolvent.pl/Baobab/AsideState";
-// import Baobab from "baobab";
-// import UserState from "absolvent.pl/Baobab/UserState";
 import React from "react";
 import $ from "jquery";
 
@@ -17,10 +15,10 @@ function redraw() {
         {...asideStateTree.get()}
         onClose={asideState.actions.onClose}
         updateTitle={asideState.actions.updateTitle}
-    ></AuthorizationPane>, document.getElementById("asideTest1"));
+    ></AuthorizationPane>, document.getElementById(asideState.selector));
 }
 
-$("[data-role=\"aside-open\"]").on("click", function () {
+$("[data-role=\"aside-open-auth\"]").on("click", function () {
     asideStateTree.set("isVisible", true);
 });
 

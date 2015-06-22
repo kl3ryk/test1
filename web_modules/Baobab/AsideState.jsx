@@ -11,6 +11,7 @@ function create(initialData) {
 
     return {
         "data": stateTree,
+        "selector": "asideTest1",
         "actions": {
             "onClose": function () {
                 stateTree.set("isVisible", false);
