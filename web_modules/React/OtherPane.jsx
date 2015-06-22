@@ -18,6 +18,7 @@ export default React.createClass({
         return <Aside isVisible={this.props.isVisible} onClose={this.props.onClose} title={this.getTitle()}>
             <div>
                 Jadę furka do poznania a na drodze stoi Ania
+                <a data-role="in-pane-aside">In pane aside</a>
             </div>
         </Aside>;
     },

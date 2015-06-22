@@ -20,4 +20,5 @@ $("[data-role=\"aside-open-other\"]").on("click", function () {
     asideStateTree.set("isVisible", true);
 });
 
+
 asideStateTree.on("update", redraw);

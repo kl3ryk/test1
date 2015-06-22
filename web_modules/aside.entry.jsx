@@ -26,4 +26,8 @@ $("[data-role=\"update-title\"]").on("click", function () {
     asideState.actions.updateTitle("test wytrzymałości");
 });
 
+$("body").on("click", "[data-role=\"in-pane-aside\"]", function () {
+    asideStateTree.set("isVisible", true);
+});
+
 asideStateTree.on("update", redraw);
