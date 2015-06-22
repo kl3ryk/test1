@@ -1,33 +1,31 @@
 "use strict";
 
 import AuthorizationPane from "absolvent.pl/React/AuthorizationPane";
-import Baobab from "baobab";
+import AsideState from "absolvent.pl/Baobab/AsideState";
+// import Baobab from "baobab";
 // import UserState from "absolvent.pl/Baobab/UserState";
 import React from "react";
 import $ from "jquery";
 
 // var offerSearchConfig = JSON.parse(document.getElementById("OfferSearchConfig").textContent);
-// var userState = UserState.create({});
-// var userStateStateTree = userState.data;
 
-var stateTree = new Baobab({
-    "isAsideVisible": false
-});
+var asideState = AsideState.create({});
+var asideStateTree = asideState.data;
 
 function redraw() {
-    // var favourites = userStateStateTree.get("favourites");
     React.render(<AuthorizationPane
-        {...stateTree.get()}
-        onClose={() => stateTree.set("isAsideVisible", false)}
+        {...asideStateTree.get()}
+        onClose={asideState.actions.onClose}
+        updateTitle={asideState.actions.updateTitle}
     ></AuthorizationPane>, document.getElementById("asideTest1"));
 }
 
 $("[data-role=\"aside-open\"]").on("click", function () {
-    stateTree.set("isAsideVisible", true);
+    asideStateTree.set("isVisible", true);
 });
 
-stateTree.on("update", redraw);
-redraw();
+$("[data-role=\"update-title\"]").on("click", function () {
+    asideState.actions.updateTitle("test wytrzymałości");
+});
 
-// userStateStateTree.on("update", redraw);
-// redraw();
+asideStateTree.on("update", redraw);

@@ -17,41 +17,41 @@
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.css">
         <style>
-            .aside-content-enter {
-                position: absolute;
-                top: 0;
-                left: 0;
-                /*opacity: 0.01;*/
-                /*transition: opacity .3s ease-in .2s;*/
-                transition: transform .7s cubic-bezier(0.215, 0.610, 0.355, 1.000) !important;
-                transform: translateX(110%) !important;
+            .aside-content-enter.content {
+                opacity: 0.01;
+                transition: opacity .5s ease-in;
             }
 
-            .aside-content-enter.aside-content-enter-active {
-                transform: translateX(0) !important;
+            .aside-content-enter.aside-content-enter-active.content {
+                opacity: 1;
             }
 
-            .aside-content-leave {
-                position: absolute;
-                top: 0;
-                left: 0;
-                display: block;
-                transition: transform .7s cubic-bezier(0.215, 0.610, 0.355, 1.000);
-                transform: translateX(0);
+            .aside-content-leave.content {
+                border: 2px solid green;
             }
 
-            .aside-content-leave.aside-content-leave-active {
-                transform: translateX(-110%);
+            .aside-content-leave.aside-content-leave-active.content {
+                border: 30px solid green;
             }
 
-            .contentPanel {
-                height: 600px;
-                position: relative;
-                overflow: hidden;
+            .aside-content-appear.overlay {
+                opacity: 0.7;
+                transition: opacity .2s ease-in;
             }
 
-            .aside.is-visible {
-                display: block;
+            .aside-content-appear.aside-content-appear-active.overlay {
+                opacity: 0.7;
+            }
+
+            .aside .aside-content-appear.content {
+                -webkit-transform: translate3d(100%, 0, 0);
+                transform: translate3d(100%, 0, 0);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .aside .aside-content-appear.aside-content-appear-active.content {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
             }
 
             .aside .overlay {
@@ -63,10 +63,11 @@
                 width: 100%;
                 height: 100%;
                 z-index: 128;
-                background: rgba(0,0,0, .7);
+                background: rgba(0, 0, 0, 0.7);
             }
 
             .aside .content {
+                transform: translateX(0);
                 background: white;
                 position: absolute;
                 right: 0;
@@ -104,7 +105,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active" data-role="aside-open"><a href="#">Link123 <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="#">Link123 <span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Link</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -133,9 +134,14 @@
                             </ul>
                         </li>
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </nav>
+
+        <a href="#" data-role="aside-open">Aside open</a>
+        <a href="#" data-role="update-title" style="position: relative; z-index: 10000;">Update title</a>
 
         <div class="container">
             <div class="row">
@@ -157,10 +163,12 @@
                         "name": "Massimo Dutti",
                         "image": "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/102010/pwc.png?itok=sbmeE3T8"
                     },
-                    "locations": [{
-                        "location": "Łomża, małopolskie",
-                        "url": "http://onet.pl"
-                    }]
+                    "locations": [
+                        {
+                            "location": "Łomża, małopolskie",
+                            "url": "http://onet.pl"
+                        }
+                    ]
                 },
                 {
                     "id": 2,
@@ -170,10 +178,12 @@
                         "name": "Massimo Dutti",
                         "image": "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/122012/longv1-converted.png?itok=KpTMhREV"
                     },
-                    "locations": [{
-                        "location": "Warszawa, mazowieckie",
-                        "url": "http://onet.pl"
-                    }]
+                    "locations": [
+                        {
+                            "location": "Warszawa, mazowieckie",
+                            "url": "http://onet.pl"
+                        }
+                    ]
                 },
                 {
                     "id": 3,
@@ -183,10 +193,12 @@
                         "name": "Massimo Dutti",
                         "image": "http://www.brandsoftheworld.com/sites/default/files/styles/logo-thumbnail/public/012013/wplogo_z_adresem_apla-converted.png?itok=wGE2AarQ"
                     },
-                    "locations": [{
-                        "location": "Opole, opolskie",
-                        "url": "http://onet.pl"
-                    }]
+                    "locations": [
+                        {
+                            "location": "Opole, opolskie",
+                            "url": "http://onet.pl"
+                        }
+                    ]
                 }
             ]
         }</script>
@@ -204,14 +216,15 @@
             _gaq.push(['_setDomainName', 'absolvent.pl']);
             _gaq.push(['_trackPageview']);
 
-            (function() {
+            (function () {
                 var ga = document.createElement('script');
 
                 ga.type = 'text/javascript';
                 ga.async = true;
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
             })();
         </script>
     </body>
