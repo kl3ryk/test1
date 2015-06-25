@@ -11,7 +11,7 @@ function create(initialData) {
 
     return {
         "data": stateTree,
-        "selector": "asideTest1",
+        "selector": "action-panel",
         "type": 1,
         "actions": {
             "onClose": function () {

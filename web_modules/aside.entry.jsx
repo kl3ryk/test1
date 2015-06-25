@@ -1,40 +1,41 @@
 "use strict";
 
-import Aside from "absolvent.pl/React/Aside";
-import AsideState from "absolvent.pl/Baobab/AsideState";
+import ActionPanel from "absolvent.pl/React/ActionPanel";
+import ActionPanelState from "absolvent.pl/Baobab/ActionPanelState";
 import React from "react";
 import $ from "jquery";
 
 // var offerSearchConfig = JSON.parse(document.getElementById("OfferSearchConfig").textContent);
 
-var asideState = AsideState.create({});
-var asideStateTree = asideState.data;
+var actionPanelState = ActionPanelState.create({});
+var actionPanelStateTree = actionPanelState.data;
 
 function redraw() {
-    React.render(<Aside
-        {...asideStateTree.get()}
-        onClose={asideState.actions.onClose}
-        updateTitle={asideState.actions.updateTitle} />, document.getElementById(asideState.selector));
+    React.render(<ActionPanel
+        {...actionPanelStateTree.get()}
+        onClose={actionPanelState.actions.onClose}
+        updateTitle={actionPanelState.actions.updateTitle} />, document.getElementById(actionPanelState.selector));
 }
 
 $("[data-role=\"aside-open-auth\"]").on("click", function () {
-    asideStateTree.set("type", 1);
-    asideStateTree.set("isVisible", true);
+    actionPanelStateTree.set("type", 1);
+    actionPanelStateTree.set("isVisible", true);
 });
 
 
-$("[data-role=\"aside-open-other\"]").on("click", function () {
-    asideStateTree.set("type", 2);
-    asideStateTree.set("isVisible", true);
-});
+// $("[data-role=\"aside-open-other\"]").on("click", function () {
+//     actionPanelStateTree.set("type", 2);
+//     actionPanelStateTree.set("isVisible", true);
+// });
 
 $("[data-role=\"update-title\"]").on("click", function () {
-    asideState.actions.updateTitle("test wytrzymałości");
+    actionPanelState.actions.updateTitle("test wytrzymałości");
 });
 
-$("body").on("click", "[data-role=\"in-pane-aside\"]", function () {
-    asideStateTree.set("type", 1);
-    asideStateTree.set("isVisible", true);
-});
+// $("body").on("click", "[data-role=\"in-pane-aside\"]", function () {
+//     actionPanelStateTree.set("type", 1);
+//     actionPanelStateTree.set("isVisible", true);
+// });
 
-asideStateTree.on("update", redraw);
+actionPanelStateTree.on("update", redraw);
+redraw();

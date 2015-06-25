@@ -94,6 +94,32 @@
                 font-size: 20px;
                 z-index: 2048;
             }
+
+            .aside .authorization {
+
+            }
+
+            .aside .authorization .tabs div {
+                transition: all 0.8s ease-in;
+            }
+
+            .aside .authorization .tabs .login {
+                opacity: 0;
+                display: none;
+            }
+
+            .aside .authorization .tabs .register {
+                opacity: 1;
+            }
+
+            .aside .authorization .tabs.isActive .login {
+                opacity: 1;
+            }
+
+            .aside .authorization .tabs.isActive .register {
+                opacity: 0;
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -160,7 +186,7 @@
             </div>
         </div>
 
-        <div id="asideTest1"></div>
+        <div id="action-panel"></div>
 
         <script id="OfferSearchConfig" type="application/json">{
             "offers": [
